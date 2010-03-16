@@ -111,10 +111,6 @@ sub to_S {
   return _inflect(shift, 0, \&Lingua::EN::Inflect::Number::to_S);
 }
 
-=head1 AUTHOR
-
-Rafael Kitover, C<< <rkitover at cpan.org> >>
-
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-lingua-en-inflect-phrase at
@@ -146,6 +142,14 @@ L<http://cpanratings.perl.org/d/Lingua-EN-Inflect-Phrase>
 L<http://search.cpan.org/dist/Lingua-EN-Inflect-Phrase/>
 
 =back
+
+=head1 SEE ALSO
+
+L<Lingua::EN::Inflect>, L<Lingua::EN::Inflect::Number>, L<Lingua::EN::Tagger>
+
+=head1 AUTHOR
+
+Rafael Kitover <rkitover@cpan.org>
 
 =head1 LICENSE AND COPYRIGHT
 
