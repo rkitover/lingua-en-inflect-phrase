@@ -12,7 +12,7 @@ Lingua::EN::Inflect::Phrase - Inflect short English Phrases
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -50,7 +50,7 @@ Attempts to pluralizes a phrase unless already plural.
 
 =cut
 
-my $NOUN = qr{(\S+)/NN(S)?};
+my $NOUN = qr{(\S+)/(NN|CD)};
 
 my $tagger;
 
@@ -73,17 +73,23 @@ sub _inflect {
 
   my $tagged = $tagger->get_readable($phrase);
 
-# noun before a preposition/conjunction
-  if (my ($noun, $is_plural) = $tagged =~ m{$NOUN .*? /(?:CC|IN)}x) {
+# last noun before a preposition/conjunction
+  if (my ($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ).*/(?:CC|IN)) .* /(?:CC|IN)}x) {
+    my $is_plural = Lingua::EN::Inflect::Number::number($noun) ne 's';
     my $inflected_noun = _inflect_noun($noun, $is_plural, $want_plural, $method);
 
-    $phrase =~ s/$noun/$inflected_noun/ if $inflected_noun;
+    substr($tagged, $-[1], ($+[1] - $-[1])) = $inflected_noun if $inflected_noun;
+
+    ($phrase = $tagged) =~ s{/[A-Z]+}{}g;
   }
 # last noun
-  elsif (($noun, $is_plural) = $tagged =~ m{$NOUN (?!.*/(?:NN|JJ))}x) {
+  elsif (($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ))}x) {
+    my $is_plural = Lingua::EN::Inflect::Number::number($noun) ne 's';
     my $inflected_noun = _inflect_noun($noun, $is_plural, $want_plural, $method);
 
-    $phrase =~ s/$noun/$inflected_noun/ if $inflected_noun;
+    substr($tagged, $-[1], ($+[1] - $-[1])) = $inflected_noun if $inflected_noun;
+
+    ($phrase = $tagged) =~ s{/[A-Z]+}{}g;
   }
 # fallback
   else {

@@ -1,4 +1,7 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.02  2010-03-16 16:28:39
+        - some improvements and fixes for DBIx::Class::Schema::Loader
+
 0.01  2010-03-16 15:16:16
         - first release

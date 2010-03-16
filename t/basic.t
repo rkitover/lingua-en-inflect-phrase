@@ -1,9 +1,8 @@
 use strict;
 use warnings;
 use Test::More;
-use Lingua::EN::Inflect::Phrase qw/to_PL to_S/;
-
-sub test_phrase;
+use lib 't/lib';
+use TestPhrase 'test_phrase';
 
 # noun conjunction noun
 test_phrase 'green egg and ham', 'green eggs and ham';
@@ -20,6 +19,9 @@ test_phrase 'prisoner of war', 'prisoners of war';
 test_phrase 'book binding', 'book bindings';
 test_phrase 'cable tie', 'cable ties';
 
+# noun x2
+test_phrase 'book book', 'book books';
+
 # noun verb
 test_phrase 'station visited', 'stations visited';
 
@@ -30,14 +32,5 @@ test_phrase 'swedish fish', 'swedish fish';
 test_phrase 'green', 'greens';
 
 done_testing;
-
-sub test_phrase {
-  my ($singular, $plural) = @_;
-
-  is to_PL($singular), $plural,   "'$singular' pluralizes to '$plural'";
-  is to_S($plural),    $singular, "'$plural' singularizes to '$singular'";
-  is to_PL($plural),   $plural,   "'$plural' unchanged when pluralized";
-  is to_S($singular),  $singular, "'$singular' unchanged when singularized";
-}
 
 # vim:et sts=2 sw=2 tw=0:
