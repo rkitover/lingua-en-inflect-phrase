@@ -1,5 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.04  2010-03-17 21:30:04
+        - POD improvements
+
 0.03  2010-03-16 20:09:31
         - clean up code
 

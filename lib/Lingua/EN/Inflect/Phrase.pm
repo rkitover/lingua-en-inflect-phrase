@@ -12,7 +12,7 @@ Lingua::EN::Inflect::Phrase - Inflect short English Phrases
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -43,10 +43,6 @@ L</to_PL>, L</to_S>
 our @EXPORT_OK = qw/to_PL to_S/;
 
 =head1 SUBROUTINES
-
-=head2 to_PL
-
-Attempts to pluralizes a phrase unless already plural.
 
 =cut
 
@@ -97,6 +93,12 @@ sub _inflect {
   return $phrase;
 }
 
+=head2 to_PL
+
+Attempts to pluralizes a phrase unless already plural.
+
+=cut
+
 sub to_PL {
   return _inflect(shift, 1, \&Lingua::EN::Inflect::Number::to_PL);
 }
@@ -142,6 +144,10 @@ L<http://cpanratings.perl.org/d/Lingua-EN-Inflect-Phrase>
 L<http://search.cpan.org/dist/Lingua-EN-Inflect-Phrase/>
 
 =back
+
+=head1 REPOSITORY
+
+  git clone git://github.com/rkitover/lingua-en-inflect-phrase.git lingua-en-inflect-phrase
 
 =head1 SEE ALSO
 
