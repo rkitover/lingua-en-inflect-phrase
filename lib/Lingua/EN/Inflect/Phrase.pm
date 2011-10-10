@@ -46,8 +46,9 @@ our @EXPORT_OK = qw/to_PL to_S/;
 
 =cut
 
-my $NOUN       = qr{(\S+)/NN};
-my $MAYBE_NOUN = qr{(\S+)/(?:NN|CD)};
+my $NOUN         = qr{(\S+)/NNS?\b};
+my $MAYBE_NOUN   = qr{(\S+)/(?:NNS?|CD|JJ)\b};
+my $NOUN_OR_VERB = qr{(\S+)/(?:NNS?|CD|JJ|VB[A-Z]?)\b};
 
 my $tagger;
 
@@ -66,9 +67,20 @@ sub _inflect {
   my ($phrase, $want_plural, $method) = @_;
   my $want_singular = not $want_plural;
 
+# Do not tag initial number, if any, unless it's "1" which is handled
+# separately. Regex is from perldoc -q 'is a number'.
+  my ($number, $padding, $rest) =
+    $phrase =~ /^(\s*(?:[+-]?)(?=\d|\.\d)\d*(?:\.\d*)?(?:[Ee](?:[+-]?\d+))?)(\s*)(.*)$/;
+
+  my $tagged;
   $tagger ||= Lingua::EN::Tagger->new;
 
-  my $tagged = $tagger->get_readable($phrase);
+  if ($number && $number != 1) {
+    $tagged = $number . $padding . $tagger->get_readable($rest);
+  }
+  else {
+    $tagged = $tagger->get_readable($phrase);
+  }
 
   my $force_singular = $tagged =~ m{
     ^ \s* (?:(?:a|the)/DET)?
@@ -78,14 +90,24 @@ sub _inflect {
 
   my ($noun, $tag);
 
-# last noun before a preposition/conjunction
-# or last noun
+# last noun (or verb that could be a noun) before a preposition/conjunction
+# or last noun/verb
   if ((($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
       (($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ))}x) or
       (($noun) = $tagged =~ m{$MAYBE_NOUN (?!.*/(?:NN|CD|JJ).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
-      (($noun) = $tagged =~ m{$MAYBE_NOUN (?!.*/(?:NN|CD|JJ))}x)) {
+      (($noun) = $tagged =~ m{$MAYBE_NOUN (?!.*/(?:NN|CD|JJ))}x) or
+      (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
+      (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?))}x)) {
     my @pos = ($-[1], $+[1]);
     my $inflected_noun;
+
+# special case phrases like "2 right braces"
+    if (lc($noun) eq 'right') {
+      (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
+      (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?))}x);
+
+      @pos = ($-[1], $+[1]);
+    }
 
     if ($force_singular) {
       $inflected_noun = Lingua::EN::Inflect::Number::to_S($noun);
