@@ -1,5 +1,7 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - better support for numbers and number words
+
 0.04  2010-03-17 21:30:04
         - POD improvements
 

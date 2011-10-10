@@ -46,7 +46,8 @@ our @EXPORT_OK = qw/to_PL to_S/;
 
 =cut
 
-my $NOUN = qr{(\S+)/(NN|CD)};
+my $NOUN       = qr{(\S+)/NN};
+my $MAYBE_NOUN = qr{(\S+)/(?:NN|CD)};
 
 my $tagger;
 
@@ -68,16 +69,34 @@ sub _inflect {
   $tagger ||= Lingua::EN::Tagger->new;
 
   my $tagged = $tagger->get_readable($phrase);
-  my $noun;
+
+  my $force_singular = $tagged =~ m{
+    ^ \s* (?:(?:a|the)/DET)?
+    \s* (?:1|one|single)/(?:JJ|NN|CD)\b
+    (?!\s* (?:\S+/CC\b | [0-9/]+/CD\b))
+  }x;
+
+  my ($noun, $tag);
 
 # last noun before a preposition/conjunction
 # or last noun
   if ((($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
-      (($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ))}x)) {
-    my $is_plural = Lingua::EN::Inflect::Number::number($noun) ne 's';
-    my $inflected_noun = _inflect_noun($noun, $is_plural, $want_plural, $method);
+      (($noun) = $tagged =~ m{$NOUN (?!.*/(?:NN|CD|JJ))}x) or
+      (($noun) = $tagged =~ m{$MAYBE_NOUN (?!.*/(?:NN|CD|JJ).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
+      (($noun) = $tagged =~ m{$MAYBE_NOUN (?!.*/(?:NN|CD|JJ))}x)) {
+    my @pos = ($-[1], $+[1]);
+    my $inflected_noun;
 
-    substr($tagged, $-[1], ($+[1] - $-[1])) = $inflected_noun if $inflected_noun;
+    if ($force_singular) {
+      $inflected_noun = Lingua::EN::Inflect::Number::to_S($noun);
+    }
+    else {
+      my $is_plural = Lingua::EN::Inflect::Number::number($noun) ne 's';
+
+      $inflected_noun = _inflect_noun($noun, $is_plural, $want_plural, $method);
+    }
+
+    substr($tagged, $pos[0], ($pos[1] - $pos[0])) = $inflected_noun if $inflected_noun;
 
     ($phrase = $tagged) =~ s{/[A-Z]+}{}g;
   }
@@ -85,7 +104,10 @@ sub _inflect {
   else {
     my $number = Lingua::EN::Inflect::Number::number($phrase);
 
-    if (($want_plural && $number ne 'p') || ($want_singular && $number ne 's')) {
+    if ($force_singular) {
+      $phrase = Lingua::EN::Inflect::Number::to_S($phrase);
+    }
+    elsif (($want_plural && $number ne 'p') || ($want_singular && $number ne 's')) {
       $phrase = $phrase->$method;
     }
   }
