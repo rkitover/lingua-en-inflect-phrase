@@ -11,6 +11,7 @@ test_phrase '2 acknowledge', '2 acknowledges';
 test_phrase '2 at sign', '2 at signs';
 test_phrase '2 left brace', '2 left braces';
 test_phrase '2 right brace', '2 right braces';
+test_phrase '2 negative acknowledge', '2 negative acknowledges';
 
 done_testing;
 

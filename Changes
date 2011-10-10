@@ -1,5 +1,7 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - handle "negative acknowledges"
+
 0.05  2011-10-10 21:37:57
         - fix some bugs discovered in String::ToIdentifier::EN
         - better support for numbers and number words
