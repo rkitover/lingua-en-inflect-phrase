@@ -1,5 +1,6 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.07  2011-10-10 22:07:35
         - remove special case for "single", as it was wrong
 
 0.06  2011-10-10 22:01:14
