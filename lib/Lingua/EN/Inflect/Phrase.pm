@@ -84,7 +84,7 @@ sub _inflect {
 
   my $force_singular = $tagged =~ m{
     ^ \s* (?:(?:a|the)/DET)?
-    \s* (?:1|one|single)/(?:JJ|NN|CD)\b
+    \s* (?:1|one)/(?:JJ|NN|CD)\b
     (?!\s* (?:\S+/CC\b | [0-9/]+/CD\b))
   }x;
 
