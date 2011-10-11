@@ -8,6 +8,8 @@ use TestPhrase 'test_phrase';
 
 test_phrase 'loader test25 from', 'loader test25s from';
 
+test_phrase 'belongs to', 'belongs to';
+
 done_testing;
 
 # vim:et sts=2 sw=2 tw=0:

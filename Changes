@@ -1,5 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - special case the verb "belongs", as the new fallback to verbs was
+          breaking DBIx::Class::Schema::Loader tests.
+
 0.07  2011-10-10 22:07:35
         - remove special case for "single", as it was wrong
 

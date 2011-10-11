@@ -101,6 +101,11 @@ sub _inflect {
     my @pos = ($-[1], $+[1]);
     my $inflected_noun;
 
+# special case "belongs to" (and in the future, some other verbs)
+    if ($noun =~ /^(?:belongs)\z/i) {
+      return $phrase;
+    }
+
 # special case phrases like "2 right braces" or "2 negative acknowledges"
     if ($noun =~ /^(?:right|negative)\z/i) {
       (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
