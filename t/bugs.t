@@ -17,6 +17,11 @@ test_phrase '2 negative acknowledge', '2 negative acknowledges';
 
 test_phrase 'a', 'as';
 
+# Some bugs people found while using Schema::Loader
+
+test_phrase 'person', 'people';
+test_phrase 'hero', 'heroes';
+
 done_testing;
 
 # vim:et sts=2 sw=2 tw=0:

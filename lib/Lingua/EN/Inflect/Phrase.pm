@@ -119,7 +119,14 @@ sub _inflect {
       @pos = ($-[1], $+[1]);
     }
 
-    if ($force_singular) {
+# fix "people" and "heroes"
+    if ($noun =~ /^(?:people|person)\z/) {
+      $inflected_noun = $want_singular ? 'person' : 'people';
+    }
+    elsif ($noun =~ /^hero(?:es)?\z/) {
+      $inflected_noun = $want_singular ? 'hero' : 'heroes';
+    }
+    elsif ($force_singular) {
       $inflected_noun = Lingua::EN::Inflect::Number::to_S($noun);
     }
     else {
