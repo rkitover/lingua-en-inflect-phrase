@@ -1,5 +1,6 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.09  2011-10-15 14:32:04
         - fix inflection of "a" to "some"
 
 0.08  2011-10-11 22:31:58
