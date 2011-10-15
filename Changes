@@ -1,5 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.10  2011-10-15 17:17:03
+        - special case "people" and "heroes"
+
 0.09  2011-10-15 14:32:04
         - fix inflection of "a" to "some"
 
