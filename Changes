@@ -1,5 +1,7 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - fix inflection of "a" to "some"
+
 0.08  2011-10-11 22:31:58
         - special case the verb "belongs", as the new fallback to verbs was
           breaking DBIx::Class::Schema::Loader tests.

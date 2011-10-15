@@ -67,6 +67,11 @@ sub _inflect {
   my ($phrase, $want_plural, $method) = @_;
   my $want_singular = not $want_plural;
 
+# 'a' inflects to 'some', special-case it here
+  if ($phrase eq 'a') {
+    return $want_singular ? $phrase : 'as';
+  }
+
 # Do not tag initial number, if any, unless it's "1" which is handled
 # separately. Regex is from perldoc -q 'is a number'.
   my ($number, $padding, $rest) =
