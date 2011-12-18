@@ -21,6 +21,9 @@ test_phrase 'a', 'as';
 
 test_phrase 'person', 'people';
 test_phrase 'hero', 'heroes';
+test_phrase 'referal log', 'referal logs'; # sic
+test_phrase 'referral log', 'referral logs';
+test_phrase 'alias', 'aliases';
 
 done_testing;
 

@@ -1,5 +1,7 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - fix "aliases" and "referral logs" (RT#73242)
+
 0.10  2011-10-15 17:17:03
         - special case "people" and "heroes"
 

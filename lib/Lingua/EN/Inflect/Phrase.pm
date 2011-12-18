@@ -112,7 +112,8 @@ sub _inflect {
     }
 
 # special case phrases like "2 right braces" or "2 negative acknowledges"
-    if ($noun =~ /^(?:right|negative)\z/i) {
+# also we want "logs" to be treated as a noun usually
+    if ($noun =~ /^(?:right|negative)\z/i || $phrase =~ /\blogs\b/i) {
       (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?).*/(?:CC|IN)) .* /(?:CC|IN)}x) or
       (($noun) = $tagged =~ m{$NOUN_OR_VERB (?!.*/(?:NN|CD|JJ|VB[A-Z]?))}x);
 
@@ -120,11 +121,14 @@ sub _inflect {
     }
 
 # fix "people" and "heroes"
-    if ($noun =~ /^(?:people|person)\z/) {
+    if ($noun =~ /^(?:people|person)\z/i) {
       $inflected_noun = $want_singular ? 'person' : 'people';
     }
-    elsif ($noun =~ /^hero(?:es)?\z/) {
+    elsif ($noun =~ /^hero(?:es)?\z/i) {
       $inflected_noun = $want_singular ? 'hero' : 'heroes';
+    }
+    elsif ($want_singular && lc($noun) eq 'aliases') {
+      $inflected_noun = 'alias';
     }
     elsif ($force_singular) {
       $inflected_noun = Lingua::EN::Inflect::Number::to_S($noun);
