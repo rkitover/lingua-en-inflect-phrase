@@ -1,5 +1,6 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.11  2011-12-18 06:25:33
         - fix "aliases" and "referral logs" (RT#73242)
 
 0.10  2011-10-15 17:17:03
