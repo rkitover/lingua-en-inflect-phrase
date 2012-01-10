@@ -130,6 +130,9 @@ sub _inflect {
     elsif ($want_singular && lc($noun) eq 'aliases') {
       $inflected_noun = 'alias';
     }
+    elsif ($want_singular && lc($noun) eq 'statuses') {
+      $inflected_noun = 'status';
+    }
     elsif ($force_singular) {
       $inflected_noun = Lingua::EN::Inflect::Number::to_S($noun);
     }

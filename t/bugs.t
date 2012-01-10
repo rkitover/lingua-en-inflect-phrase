@@ -25,6 +25,10 @@ test_phrase 'referal log', 'referal logs'; # sic
 test_phrase 'referral log', 'referral logs';
 test_phrase 'alias', 'aliases';
 
+# this one's from haarg
+
+test_phrase 'status', 'statuses';
+
 done_testing;
 
 # vim:et sts=2 sw=2 tw=0:
