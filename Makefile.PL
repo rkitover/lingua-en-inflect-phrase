@@ -12,7 +12,7 @@ requires 'Lingua::EN::Inflect'          => '1.891';
 requires 'Lingua::EN::Tagger'           => '0.15';
 requires 'Exporter'                     => '5.63';
 
-readme_from 'lib/Lingua/EN/Inflect/Phrase.pm' => 'clean';
+readme_from 'lib/Lingua/EN/Inflect/Phrase.pm';
 
 auto_provides;
 auto_install;
