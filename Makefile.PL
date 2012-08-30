@@ -9,7 +9,7 @@ build_requires 'Test::More' => '0.94';
 
 requires 'Lingua::EN::Inflect::Number'  => '1.1';
 requires 'Lingua::EN::Inflect'          => '1.891';
-requires 'Lingua::EN::Tagger'           => '0.15';
+requires 'Lingua::EN::Tagger'           => '0.20';
 requires 'Exporter'                     => '5.63';
 
 readme_from 'lib/Lingua/EN/Inflect/Phrase.pm';
