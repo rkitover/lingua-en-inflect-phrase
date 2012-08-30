@@ -1,5 +1,6 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.13  2012-08-30 05:30:04
         - bump Lingua::EN::Tagger dep to 0.20 due to unescaped braces in regexes
 
 0.12  2012-01-10 22:44:02
