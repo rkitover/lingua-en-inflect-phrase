@@ -1,5 +1,9 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - add $prefer_nouns config variable, defaulting to 1, which allows the
+          recognition of phrases such as 'source splits'
+        - much better number handling, in both number and word form
+
 0.13  2012-08-30 05:30:04
         - bump Lingua::EN::Tagger dep to 0.20 due to unescaped braces in regexes
 

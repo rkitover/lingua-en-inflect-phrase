@@ -8,12 +8,21 @@ use Lingua::EN::Inflect::Phrase qw/to_PL to_S/;
 our @EXPORT_OK = 'test_phrase';
 
 sub test_phrase {
-  my ($singular, $plural) = @_;
+  my ($singular, $plural, $addendum) = @_;
 
-  is to_PL($singular), $plural,   "'$singular' pluralizes to '$plural'";
-  is to_S($plural),    $singular, "'$plural' singularizes to '$singular'";
-  is to_PL($plural),   $plural,   "'$plural' unchanged when pluralized";
-  is to_S($singular),  $singular, "'$singular' unchanged when singularized";
+  if ($addendum) {
+    $addendum = ": $addendum";
+  }
+  else {
+    $addendum = '';
+  }
+
+  local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+  is to_PL($singular), $plural,   "'$singular' pluralizes to '$plural'$addendum";
+  is to_S($plural),    $singular, "'$plural' singularizes to '$singular'$addendum";
+  is to_PL($plural),   $plural,   "'$plural' unchanged when pluralized$addendum";
+  is to_S($singular),  $singular, "'$singular' unchanged when singularized$addendum";
 }
 
 1;

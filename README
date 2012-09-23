@@ -19,6 +19,26 @@ DESCRIPTION
     If it doesn't work, please email or submit to RT the example you tried,
     and I'll try to fix it.
 
+OPTIONS
+    By default, this module prefers to treat words as nouns (sometimes words
+    can be interpreted as a verb or a noun without context.) This is better
+    for things such as database table/column names, which is what this
+    module is primarily for.
+
+    This behavior can be switched with the variable $prefer_nouns. The
+    default is 1.
+
+    For example:
+
+      {
+        local $Lingua::EN::Inflect::Phrase::prefer_nouns = 0;
+        is Lingua::EN::Inflect::Phrase::to_S('sources split'), 'source splits';
+      }
+      {
+        local $Lingua::EN::Inflect::Phrase::prefer_nouns = 1;
+        is Lingua::EN::Inflect::Phrase::to_S('source splits'), 'source split';
+      }
+
 OPTIONAL EXPORTS
     "to_PL", "to_S"
 
