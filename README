@@ -16,6 +16,13 @@ SYNOPSIS
 DESCRIPTION
     Attempts to pluralize or singularize short English phrases.
 
+    Does not throw exceptions at present, if you attempt to pluralize an
+    already pluralized phrase, it will leave it unchanged (and vice versa.)
+
+    The behavior of this module is subject to change as I tweak the
+    heuristics, as some things get fixed others might regress. The
+    processing of natural language is a messy business.
+
     If it doesn't work, please email or submit to RT the example you tried,
     and I'll try to fix it.
 
