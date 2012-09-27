@@ -1,5 +1,6 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+0.15  2012-09-27 22:17:00
         - fix uninitialized warnings on older perls
 
 0.14  2012-09-24 03:56:10
