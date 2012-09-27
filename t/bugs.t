@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::NoWarnings ();
 use Lingua::EN::Inflect::Phrase qw/to_S to_PL/;
 use lib 't/lib';
 use TestPhrase 'test_phrase';
@@ -44,6 +45,8 @@ test_phrase 'source split',  'source splits', 'prefer_nouns=1';
 
   test_phrase 'source splits',  'sources split', 'prefer_nouns=0';
 }
+
+Test::NoWarnings::had_no_warnings;
 
 done_testing;
 

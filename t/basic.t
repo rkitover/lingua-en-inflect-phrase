@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::NoWarnings ();
 use lib 't/lib';
 use TestPhrase 'test_phrase';
 
@@ -31,6 +32,8 @@ test_phrase 'swedish fish', 'swedish fish';
 
 # fallback
 test_phrase 'green', 'greens';
+
+Test::NoWarnings::had_no_warnings;
 
 done_testing;
 

@@ -5,7 +5,8 @@ all_from 'lib/Lingua/EN/Inflect/Phrase.pm';
 author   'Rafael Kitover <rkitover@cpan.org>';
 license  'perl';
 
-test_requires 'Test::More'   => '0.94';
+test_requires 'Test::More'       => '0.94';
+test_requires 'Test::NoWarnings' => '0';
 
 requires 'Lingua::EN::Inflect::Number'  => '1.1';
 requires 'Lingua::EN::Inflect'          => '1.891';

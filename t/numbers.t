@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::NoWarnings ();
 use lib 't/lib';
 use TestPhrase 'test_phrase';
 
@@ -77,5 +78,7 @@ test_phrase 'the one', 'the ones';
 test_phrase 'the two', 'the twos';
 test_phrase 'one', 'ones';
 test_phrase 'two', 'twos';
+
+Test::NoWarnings::had_no_warnings;
 
 done_testing;

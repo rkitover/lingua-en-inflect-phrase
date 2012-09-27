@@ -146,7 +146,7 @@ sub _inflect {
   $tagger ||= Lingua::EN::Tagger->new;
 
   # force plural unless number is '1'
-  if (length $number && length $pad && length $rest) {
+  if ((grep { defined && length } ($number, $pad, $rest)) == 3) {
     my $tagged_rest = $tagger->get_readable($rest);
 
     $tagged = $det . $number . $pad . $tagged_rest;

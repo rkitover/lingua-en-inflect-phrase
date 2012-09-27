@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::NoWarnings ();
 use lib 't/lib';
 use TestPhrase 'test_phrase';
 
@@ -9,6 +10,8 @@ use TestPhrase 'test_phrase';
 test_phrase 'loader test25 from', 'loader test25s from';
 
 test_phrase 'belongs to', 'belongs to';
+
+Test::NoWarnings::had_no_warnings;
 
 done_testing;
 
