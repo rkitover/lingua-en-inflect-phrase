@@ -10,7 +10,7 @@ test_requires 'Test::NoWarnings' => '0';
 
 requires 'Lingua::EN::Inflect::Number'  => '1.1';
 requires 'Lingua::EN::Inflect'          => '1.891';
-requires 'Lingua::EN::Tagger'           => '0.20';
+requires 'Lingua::EN::Tagger'           => '0.23';
 requires 'Lingua::EN::FindNumber'       => '0';
 requires 'Exporter'                     => '5.63';
 

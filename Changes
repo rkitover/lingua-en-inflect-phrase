@@ -1,5 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
+        - bump up Lingua::EN::Tagger dep again due to unescaped braces in
+          regexes
+
 0.15  2012-09-27 22:17:00
         - fix uninitialized warnings on older perls
 
