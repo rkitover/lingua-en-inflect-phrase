@@ -14,8 +14,6 @@ Lingua::EN::Inflect::Phrase - Inflect short English Phrases
 
 =cut
 
-our $VERSION = '0.16';
-
 =head1 SYNOPSIS
 
   use Lingua::EN::Inflect::Phrase;
