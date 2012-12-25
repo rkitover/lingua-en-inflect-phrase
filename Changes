@@ -2,6 +2,9 @@ Revision history for Lingua-EN-Inflect-Phrase
 
 {{$NEXT}}
 
+        - fix for ordinal number phrases, 'first release' was singularizing to
+          'first releases' (RT#82242)
+
 0.16  2012-11-05 02:43:34
         - bump up Lingua::EN::Tagger dep again due to unescaped braces in
           regexes

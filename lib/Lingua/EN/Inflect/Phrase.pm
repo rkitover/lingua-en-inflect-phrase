@@ -7,6 +7,7 @@ use Lingua::EN::Inflect;
 use Lingua::EN::Inflect::Number;
 use Lingua::EN::Tagger;
 use Lingua::EN::FindNumber '$number_re';
+use Lingua::EN::Number::IsOrdinal 'is_ordinal';
 
 =head1 NAME
 
@@ -194,20 +195,22 @@ sub _inflect {
 
     $number = (sort { length $a <=> length $b } map $_||'', ($1, $2, $3, $4, $5))[-1];
 
-    my $tagged_number_re;
+    if (not is_ordinal($number)) {
+      my $tagged_number_re;
 
-    foreach my $num_elem (split /\s+/, $number) {
-      $tagged_number_re .= "\Q$num_elem\E/[A-Z]+\\s*";
-    }
+      foreach my $num_elem (split /\s+/, $number) {
+        $tagged_number_re .= "\Q$num_elem\E/[A-Z]+\\s*";
+      }
 
-    my $tagged_number;
-    ($tagged_number, $pad, $rest) = $tagged =~ m/($tagged_number_re)(\s*)(.*)/;
-    my @tagged_number_pos = ($-[1], $+[1]);
+      my $tagged_number;
+      ($tagged_number, $pad, $rest) = $tagged =~ m/($tagged_number_re)(\s*)(.*)/;
+      my @tagged_number_pos = ($-[1], $+[1]);
 
-    if (length $rest) {
-      substr($tagged, $tagged_number_pos[0], ($tagged_number_pos[1] - $tagged_number_pos[0])) = $number;
-      $want_plural   = 1;
-      $want_singular = 0;
+      if (length $rest) {
+        substr($tagged, $tagged_number_pos[0], ($tagged_number_pos[1] - $tagged_number_pos[0])) = $number;
+        $want_plural   = 1;
+        $want_singular = 0;
+      }
     }
   }
 

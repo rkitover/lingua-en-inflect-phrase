@@ -79,6 +79,14 @@ test_phrase 'the two', 'the twos';
 test_phrase 'one', 'ones';
 test_phrase 'two', 'twos';
 
+# ordinal numbers
+
+test_phrase '1st release', '1st releases';
+test_phrase 'first release', 'first releases';
+test_phrase 'second trip', 'second trips';
+test_phrase 'twenty third egg', 'twenty third eggs';
+test_phrase '2nd car', '2nd cars';
+
 Test::NoWarnings::had_no_warnings;
 
 done_testing;
