@@ -1,9 +1,9 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
 {{$NEXT}}
+        - fix meta repository info (RT#82274)
 
 0.17 2012-12-25 14:09:56
-
         - fix for ordinal number phrases, 'first release' was singularizing to
           'first releases' (RT#82242)
 
