@@ -114,6 +114,12 @@ sub _inflect_noun {
   elsif ($want_plural && lc($noun) eq 'two') {
     return 'twos';
   }
+  elsif ($noun =~ /^[A-Z].+ity\z/) {
+    return $want_plural ? ucfirst(Lingua::EN::Inflect::Number::to_PL(lc($noun))) : $noun;
+  }
+  elsif ($noun =~ /^[A-Z].+ities\z/) {
+    return $want_plural ? $noun : ucfirst(Lingua::EN::Inflect::Number::to_S(lc($noun)));
+  }
 
   if ($want_plural && (not $is_plural)) {
     return Lingua::EN::Inflect::Number::to_PL($noun);
