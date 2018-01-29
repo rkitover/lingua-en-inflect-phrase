@@ -77,10 +77,10 @@ our @EXPORT_OK = qw/to_PL to_S/;
 
 our $prefer_nouns = 1;
 
-my $MAYBE_NOUN       = qr{(\S+)/(?:NNS?|CD|JJ)\b};
-my $MAYBE_NOUN_TAG   = qr{/(?:NNS?|CD|JJ)\b};
-my $NOUN_OR_VERB     = qr{(\S+)/(?:NNS?|CD|JJ|VB[A-Z]?)\b};
-my $NOUN_OR_VERB_TAG = qr{/(?:NNS?|CD|JJ|VB[A-Z]?)\b};
+my $MAYBE_NOUN       = qr{(\S+)/(?:NN[PS]?|CD|JJ)\b};
+my $MAYBE_NOUN_TAG   = qr{/(?:NN[PS]?|CD|JJ)\b};
+my $NOUN_OR_VERB     = qr{(\S+)/(?:NN[PS]?|CD|JJ|VB[A-Z]?)\b};
+my $NOUN_OR_VERB_TAG = qr{/(?:NN[PS]?|CD|JJ|VB[A-Z]?)\b};
 my $VERB_TAG         = qr{/VB[A-z]?\b};
 
 my $PREPOSITION_OR_CONJUNCTION_TAG = qr{/(?:CC|IN)\b};
