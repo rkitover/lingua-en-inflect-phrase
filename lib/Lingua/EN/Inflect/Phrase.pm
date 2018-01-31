@@ -338,30 +338,6 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Lingua-EN-Inflect-Phrase>.  I
 will be notified, and then you'll automatically be notified of progress on your
 bug as I make changes.
 
-=head1 SUPPORT
-
-More information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Lingua-EN-Inflect-Phrase>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Lingua-EN-Inflect-Phrase>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Lingua-EN-Inflect-Phrase>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Lingua-EN-Inflect-Phrase/>
-
-=back
-
 =head1 REPOSITORY
 
   git clone git://github.com/rkitover/lingua-en-inflect-phrase.git lingua-en-inflect-phrase
@@ -372,11 +348,15 @@ L<Lingua::EN::Inflect>, L<Lingua::EN::Inflect::Number>, L<Lingua::EN::Tagger>
 
 =head1 AUTHOR
 
-Rafael Kitover <rkitover@cpan.org>
+rkitover: Rafael Kitover <rkitover@cpan.org>
+
+=head1 CONTRIBUTORS
+
+zakame: Zak B. Elep <zakame@zakame.net>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2010 Rafael Kitover (rkitover@cpan.org).
+Copyright (c) 2018 Rafael Kitover (rkitover@cpan.org).
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
