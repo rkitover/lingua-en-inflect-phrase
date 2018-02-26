@@ -1,6 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
 {{$NEXT}}
+
+0.20 2018-02-26 10:22:28
         - fix for CPANTS Kwalitee issues by Zak B. Elep (zakame):
             add MetaProvides::Package and MinimumPerl to dist.ini
 
