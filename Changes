@@ -1,6 +1,8 @@
 Revision history for Lingua-EN-Inflect-Phrase
 
 {{$NEXT}}
+        - fix for CPANTS Kwalitee issues by Zak B. Elep (zakame):
+            add MetaProvides::Package and MinimumPerl to dist.ini
 
 0.19 2018-01-31 13:59:53
         - fix for tagged proper nouns and -ity/-ities nouns by Zak B. Elep
